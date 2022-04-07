@@ -3,6 +3,7 @@ const mongoose = require("mongoose"),
   passportLocalMongoose = require("passport-local-mongoose");
 require("dotenv").config();
 
+console.log(process.env.DB_CONN);
 const ExerciseTemplate = new mongoose.Schema(
   {
     name: { type: String, required: true },
