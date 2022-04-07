@@ -1,13 +1,13 @@
 require("./db");
-require("./auth");
 
 const passport = require("passport");
 const express = require("express");
 const path = require("path");
+require("./auth");
 
-const routes = require("./routes/index");
-const list = require("./routes/list");
-const listItem = require("./routes/list-item");
+const indexRouter = require("./routes/index");
+const workoutRouter = require("./routes/workout");
+const templateRouter = require("./routes/template");
 
 const app = express();
 
@@ -37,6 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", routes);
-
+app.use("/", indexRouter);
+app.use("/template", templateRouter);
+app.use("/workout", workoutRouter);
 app.listen(3000);

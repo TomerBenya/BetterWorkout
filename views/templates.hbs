@@ -1,0 +1,21 @@
+<h2>Templates</h2>
+
+<div>
+
+  {{#each templates}}
+    <h3>{{name}}</h3>
+    {{#each exerciseTemplates}}
+      <h4>{{incremented @index}}
+        -
+        {{name}}
+        {{sets}}
+        X
+        {{reps}}
+        Increment:
+        {{increment}}
+        lbs</h4>
+    {{/each}}
+
+  {{/each}}
+
+</div>
