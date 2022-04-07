@@ -5,7 +5,6 @@ const express = require("express"),
   User = mongoose.model("User");
 
 User.ensureIndexes();
-
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");

@@ -40,4 +40,4 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/template", templateRouter);
 app.use("/workout", workoutRouter);
-app.listen(8080);
+app.listen(3000);

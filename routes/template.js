@@ -16,9 +16,9 @@ const isAuthenticated = (req, res, next) => {
 router.use(isAuthenticated);
 
 router.get("/", (req, res) => {
-  console.log("ggg");
-  Template.find({}, (err, templates) => {
-    console.log(templates);
+  console.log(req.user);
+  Template.find({ user: req.user._id }, (err, templates) => {
+    // console.log(templates);
     res.render("templates.hbs", { templates });
   });
 });
