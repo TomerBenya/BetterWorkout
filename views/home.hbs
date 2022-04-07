@@ -1,11 +1,12 @@
 {{#if user}}
   <p>
     Hi
-    {{user.username}}. Let's get yolked!
+    {{user.username}}.
+    {{motivationalMessage}}
   </p>
 {{else}}
   <a href="/login">Login</a>
   or
   <a href="/register">Register</a>
-  to create a grocery list.
+  to start your journey to gainsville
 {{/if}}

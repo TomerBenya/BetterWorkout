@@ -1,29 +1,102 @@
+<script>
+
+  function createExercise(number) { 
+    const root = document.createElement('div');
+    root.classList.add('form-exercise');
+    root.innerHTML = `<h1>Exercise ${number}</h1> <div
+    class="form-row"><label>Name </label><input type="text" name="exerciseName"
+    /></div> <div class="form-row"><label>Sets </label><input type="text"
+    name="sets" /></div> <div class="form-row"><label>Reps </label><input
+    type="text" name="reps" /></div> <div class="form-row"><label>Increment
+    </label><input type="text" name="increment" /></div>`;
+    return root;
+  }
+
+
+  function addExercise(event) { 
+    event.preventDefault();
+    event.stopPropagation()
+    console.log('adding exercise');
+    const container = document.querySelector('div.exercises');
+    const numExercises = document.querySelectorAll('.form-exercise').length;
+    container.appendChild(createExercise(numExercises + 1));
+  }
+
+  function submitForm() {
+    const templateName = document.querySelector('input.template-name').value;
+
+    const exercises = [];
+    const forms = document.querySelectorAll('.form-exercise');
+    forms.forEach(form => {
+      const inputs = form.querySelectorAll('input');
+      const [name, sets, reps, increment] = Array.from(inputs).map(input => input.value);
+      exercises.push({
+        name,
+        sets,
+        reps,
+        increment
+      });
+    });
+        
+    // TODO: POST request to whatever you want with the `templateName` and `exercises`
+    fetch('/template/create', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        templateName,
+        exercises
+      })
+    }).then((response) => {
+      window.location.replace('/template')
+    });
+  }
+
+</script>
+
 <h2>Create a New Template</h2>
-<form action="" method="POST">
+{{!-- <form action="" method="POST"> --}}
   <div class="form-row"><label>Template Name:</label>
-    <input type="text" name="templateName" /></div>
+    <input class='template-name' type="text" name="templateName" /></div>
 
-  <div class="form-exercise">
-    <h1>Exercise 1</h1>
+  <div class="exercises">
+    <button id="btn-add-exercise">Add</button>
+    <br />
+    <div class="form-exercise">
+      <h1>Exercise 1</h1>
 
-    <div class="form-row"><label>Name </label><input
-        type="text"
-        name="exerciseName"
-      /></div>
-    <div class="form-row"><label>Sets </label><input
-        type="text"
-        name="sets"
-      /></div>
-    <div class="form-row"><label>Reps </label><input
-        type="text"
-        name="reps"
-      /></div>
-    <div class="form-row"><label>Increment </label><input
-        type="text"
-        name="increment"
-      /></div>
+      <div class="form-row"><label>Name </label><input
+          type="text"
+          name="exerciseName"
+        /></div>
+      <div class="form-row"><label>Sets </label><input
+          type="text"
+          name="sets"
+        /></div>
+      <div class="form-row"><label>Reps </label><input
+          type="text"
+          name="reps"
+        /></div>
+      <div class="form-row"><label>Increment </label><input
+          type="text"
+          name="increment"
+        /></div>
+    </div>
   </div>
 
-  <div class="form-row"><input type="submit" value="Create Template" /></div>
+  <div class="form-row">
+    <button id="btn-form-submit">
+      Create Template
+    </button>
+    </div>
 
-</form>
+{{!-- </form> --}}
+<script>
+  const addBtn = document.querySelector('#btn-add-exercise');
+  addBtn.addEventListener('click', addExercise);
+
+  const submitBtn = document.querySelector('#btn-form-submit');
+  submitBtn.addEventListener('click', submitForm)
+
+
+
+</script>

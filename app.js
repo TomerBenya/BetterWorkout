@@ -3,8 +3,9 @@ require("./db");
 const passport = require("passport");
 const express = require("express");
 const path = require("path");
+const hbs = require("hbs");
 require("./auth");
-
+const bodyParser = require("body-parser");
 const indexRouter = require("./routes/index");
 const workoutRouter = require("./routes/workout");
 const templateRouter = require("./routes/template");
@@ -13,6 +14,10 @@ const app = express();
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
+
+Object.entries(require("./util/helpers")).forEach(([name, fn]) =>
+  hbs.registerHelper(name, fn)
+);
 app.set("view engine", "hbs");
 
 // enable sessions
@@ -23,7 +28,7 @@ const sessionOptions = {
   saveUninitialized: true,
 };
 app.use(session(sessionOptions));
-
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 

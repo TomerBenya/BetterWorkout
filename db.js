@@ -10,7 +10,6 @@ const ExerciseTemplate = new mongoose.Schema(
     sets: { type: Number, min: 1, required: true },
     reps: { type: Number, min: 1, required: true },
     increment: { type: Number, min: 0, required: true },
-    createdAt: { type: Date, required: true },
   },
   {
     _id: true,
