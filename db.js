@@ -1,6 +1,8 @@
 const mongoose = require("mongoose"),
   URLSlugs = require("mongoose-url-slugs"),
   passportLocalMongoose = require("passport-local-mongoose");
+require("dotenv").config();
+
 const ExerciseTemplate = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -49,7 +51,7 @@ User.plugin(passportLocalMongoose);
 Workout.plugin(URLSlugs("name"));
 
 module.exports = {
-  db: mongoose.connect("mongodb://localhost/workoutdb"),
+  db: mongoose.connect(process.env.DB_CONN),
   User: mongoose.model("User", User),
   Template: mongoose.model("Template", Template),
   Workout: mongoose.model("Workout", Workout),
