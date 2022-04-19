@@ -35,6 +35,7 @@ const Template = new mongoose.Schema({
   createdAt: { type: Date, required: true },
   exerciseTemplates: [ExerciseTemplate],
 });
+Template.index({ user: 1, name: 1 }, { unique: true });
 const Workout = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   name: { type: String, required: true },
@@ -43,8 +44,8 @@ const Workout = new mongoose.Schema({
   exercises: [Exercise],
 });
 const User = new mongoose.Schema({
-  templates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Template" }],
-  workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Workout" }],
+  // templates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Template" }],
+  // workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Workout" }],
 });
 User.plugin(passportLocalMongoose);
 

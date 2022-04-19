@@ -15,7 +15,7 @@
 
   function addExercise(event) { 
     event.preventDefault();
-    event.stopPropagation()
+    event.stopPropagation();
     console.log('adding exercise');
     const container = document.querySelector('div.exercises');
     const numExercises = document.querySelectorAll('.form-exercise').length;
@@ -47,9 +47,10 @@
         exercises
       })
     }).then((response) => {
-      window.location.replace('/template')
+      if(response.status !== 200) window.alert("Can't save templates with duplicate names, please rename your template.");
+      else window.location.replace('/template');
     });
-  }
+  };
 
 </script>
 
@@ -93,10 +94,6 @@
 <script>
   const addBtn = document.querySelector('#btn-add-exercise');
   addBtn.addEventListener('click', addExercise);
-
   const submitBtn = document.querySelector('#btn-form-submit');
   submitBtn.addEventListener('click', submitForm)
-
-
-
 </script>

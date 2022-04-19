@@ -20,7 +20,7 @@ module.exports = {
         ignoreReadBeforeAssign: false,
       },
     ],
-    curly: ["error"],
+    curly: ["off"],
     eqeqeq: ["error"],
     "no-multi-spaces": ["error"],
     "no-lone-blocks": ["error"],

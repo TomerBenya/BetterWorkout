@@ -116,7 +116,7 @@ Here's the [Site Map](https://embed.creately.com/pc3pb9fYLMP?token=V9uj7kCB8HFmO
 
 - (5 points) Integrate user authentication
   - I'm going to be using passport for user authentication
-  - And account has been made for testing; I'll email you the password
+  - And account has been made for testing;
 - (3 points) Write unit tests in mocha
 
 8 points total out of 8 required points

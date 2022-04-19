@@ -3,7 +3,14 @@
 <div>
 
   {{#each templates}}
-    <h3>{{name}}</h3>
+
+    <h3>
+      <span>
+        {{name}}
+      </span>
+      <button class="delete-btn" data-template="{{_id}}">Delete</button>
+    </h3>
+
     {{#each exerciseTemplates}}
       <p>{{add 1 @index}}
         -
@@ -15,7 +22,23 @@
         {{increment}}
         lbs</p>
     {{/each}}
-
   {{/each}}
-
 </div>
+
+<script>
+document.querySelectorAll(".delete-btn").forEach((button) => {
+  button.addEventListener('click', deleteTemplate);
+});
+
+/**
+* @param {MouseEvent} event
+*/
+function deleteTemplate({target}){
+  const {template: id} = target.dataset;
+  fetch(`/template/${id}`, {
+    method: "DELETE",
+  }).then((response) => {
+    window.location.reload();
+  })
+}
+</script>

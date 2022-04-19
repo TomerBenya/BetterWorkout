@@ -27,6 +27,18 @@ router.get("/create", (req, res) => {
   res.render("template-create.hbs");
 });
 
+router.delete("/:templateId", (req, res) => {
+  const { templateId } = req.params;
+  Template.deleteOne({ _id: templateId })
+    .then(function () {
+      console.log("Data deleted");
+      return res.status(200).end();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
 router.post("/create", (req, res) => {
   const { templateName, exercises } = req.body;
   console.log(req.body);
@@ -37,7 +49,8 @@ router.post("/create", (req, res) => {
     createdAt: Date.now(),
     exerciseTemplates: exercises.map((data) => new ExerciseTemplate(data)),
   }).save((err, list, count) => {
-    res.status(200).end();
+    if (err) return res.status(400).end();
+    return res.status(200).end();
   });
 });
 
