@@ -1,0 +1,26 @@
+<h2>Select Template</h2>
+
+<div>
+
+  {{#each templates}}
+
+    <h3>
+      <span>
+        <a href="/workout/{{_id}}">{{name}}</a>
+      </span>
+    </h3>
+
+    {{#each exerciseTemplates}}
+
+      <p>{{add 1 @index}}
+        -
+        {{name}}
+        {{sets}}
+        X
+        {{reps}}
+        Increment:
+        {{increment}}
+        lbs</p>
+    {{/each}}
+  {{/each}}
+</div>

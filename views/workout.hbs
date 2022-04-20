@@ -1,0 +1,70 @@
+
+
+
+<div>
+  {{#each template}}
+    <h3>
+      <span>
+        {{name}}
+      </span>
+    </h3>
+    <div class="exercise" data-id="{{ _id }}">
+      {{#each exerciseTemplates}}
+        <div class="activity">
+          <h4>{{add 1 @index}} - {{name}}</h4>
+          {{#for sets}}
+            <div class="set">
+              <span>
+                <label for="fname">🏋️‍♂️ Reps 🏋️‍♀️</label>
+                <input type="number" size="3" />
+              </span>
+              
+              <span>
+                <label for="fname">🔩 Weight 🔩</label>
+                <input type="number" size="4"/>
+              </span>
+            </div>
+            <hr />
+          {{/for}}
+
+        </div>
+      {{/each}}
+    </div>
+
+    <button id="finish">Finish Workout</button>
+
+  {{/each}}
+</div>
+
+<script>
+
+/** @param {HTMLElement} element */
+  function parseExercise(element) {
+    // TODO: parse the <div class="exercise"> data
+    return [...element.querySelectorAll('.activity')].map(parseActivity);
+  }
+/** @param {HTMLElement} element */
+  function parseActivity(element) {
+    // TODO: parse the <div class="activity"> data
+    return [...element.querySelectorAll('.set')].map(pareseSet);
+  }
+/** @param {HTMLElement} element */  
+  function pareseSet(element) {
+    // TODO: parse the <div class="set"> data
+    const [reps, weight] = [...element.querySelectorAll('input')].map(e => e.value);
+    return { reps, weight }
+  }
+
+
+
+  document.querySelector('#finish').addEventListener('click', () => {
+    const exercise = document.querySelector('.exercise');
+    const { id: templateId } = exercise.dataset; 
+    console.log(parseExercise(exercise));
+    fetch(`/workout/${templateId}`, {
+      method: 'POST'
+    });
+
+  })
+
+</script>

@@ -1,5 +1,4 @@
 require("./db");
-
 const passport = require("passport");
 const express = require("express");
 const path = require("path");

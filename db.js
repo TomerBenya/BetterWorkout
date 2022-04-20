@@ -36,9 +36,11 @@ const Template = new mongoose.Schema({
   exerciseTemplates: [ExerciseTemplate],
 });
 Template.index({ user: 1, name: 1 }, { unique: true });
+
 const Workout = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   name: { type: String, required: true },
+  template: { type: mongoose.Schema.Types.ObjectId, ref: "Template" },
   completedAt: { type: Date, required: true },
   completed: { type: Boolean, default: false, required: true },
   exercises: [Exercise],

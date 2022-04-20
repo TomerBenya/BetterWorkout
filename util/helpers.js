@@ -2,6 +2,14 @@ module.exports = {
   add: function (a, b) {
     return a + b;
   },
+  for: function (context, options) {
+    let accum = "";
+    for (let i = 0; i < context; ++i)
+      accum += options.fn({
+        index: i,
+      });
+    return accum;
+  },
   motivationalMessage() {
     const messages = [
       "Let's get yolked!",
