@@ -37,14 +37,27 @@ router.get("/:templateId", (req, res) => {
 
 router.post("/:templateId", async (req, res) => {
   const { templateId } = req.params;
-
+  /** @type {{sets: number, reps: number}[][]} */
+  const exercises = req.body;
+  console.log(exercises);
   console.log(templateId);
 
   const template = await Template.findOne({ _id: templateId }).exec();
+
+  const exerciseNames = template.exerciseTemplates.map((tmpl) => tmpl.name);
+
   const workout = new Workout({
-    template: template.name,
+    name: template.name,
     user: req.user,
-    createdAt: Date.now(),
+    completedAt: Date.now(),
+    template: templateId,
+    exercises: exercises.map(
+      (sets, index) =>
+        new Exercise({
+          name: exerciseNames[index],
+          sets: sets.map((set) => new Set(set)),
+        })
+    ),
   });
 
   await workout.save();

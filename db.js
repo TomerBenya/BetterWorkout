@@ -18,7 +18,7 @@ const ExerciseTemplate = new mongoose.Schema(
 const Set = new mongoose.Schema({
   reps: { type: Number, min: 1, required: true },
   weight: { type: Number, min: 0, required: true },
-  checked: { type: Boolean, default: false, required: true },
+  // checked: { type: Boolean, default: false, required: true },
 });
 const Exercise = new mongoose.Schema(
   {
@@ -42,13 +42,9 @@ const Workout = new mongoose.Schema({
   name: { type: String, required: true },
   template: { type: mongoose.Schema.Types.ObjectId, ref: "Template" },
   completedAt: { type: Date, required: true },
-  completed: { type: Boolean, default: false, required: true },
   exercises: [Exercise],
 });
-const User = new mongoose.Schema({
-  // templates: [{ type: mongoose.Schema.Types.ObjectId, ref: "Template" }],
-  // workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Workout" }],
-});
+const User = new mongoose.Schema({});
 User.plugin(passportLocalMongoose);
 
 Workout.plugin(URLSlugs("name"));

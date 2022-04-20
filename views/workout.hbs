@@ -55,14 +55,16 @@
     return { reps, weight }
   }
 
-
-
   document.querySelector('#finish').addEventListener('click', () => {
     const exercise = document.querySelector('.exercise');
     const { id: templateId } = exercise.dataset; 
     console.log(parseExercise(exercise));
     fetch(`/workout/${templateId}`, {
-      method: 'POST'
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(parseExercise(exercise)),
+    }).then((response) => {
+      window.location.replace('/template');
     });
 
   })
