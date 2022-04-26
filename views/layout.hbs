@@ -12,20 +12,22 @@
             (<a href="/logout">Logout</a>)
           </div>
         {{/if}}
-        <h1>💪 Better Workout
+        <h1>💪
+          <a href="/">Better Workout</a>
           <span
             style="display: inline-block;transform: scale(-1, 1);"
           >💪</span></h1>
       </div>
       <div id="ft">
         {{#if user}}
-          <a href="/">Home</a>
-          |
+
           <a href="/workout/select">Start Workout</a>
           |
           <a href="/template/create">Create Template</a>
           |
           <a href="/template">Templates</a>
+          |
+          <a href="/workout/history">History</a>
         {{/if}}
       </div>
       <div id="bd">

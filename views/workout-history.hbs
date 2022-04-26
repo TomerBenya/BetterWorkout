@@ -1,0 +1,31 @@
+<h2>Workout History</h2>
+
+<div>
+
+  {{#each workouts}}
+
+    <h3>
+      <span>
+        {{name}}
+        -
+        {{formatDate completedAt}}
+      </span>
+    </h3>
+
+    {{#each exercises}}
+      <h4>{{add 1 @index}}
+        -
+        {{name}}</h4>
+
+      {{#each sets}}
+        <p>
+          {{reps}}
+          X
+          {{weight}}
+        </p>
+
+      {{/each}}
+
+    {{/each}}
+  {{/each}}
+</div>

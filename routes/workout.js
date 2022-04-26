@@ -17,6 +17,12 @@ const isAuthenticated = (req, res, next) => {
 };
 router.use(isAuthenticated);
 
+router.get("/history", (req, res) => {
+  console.log("View Logged Workouts");
+  Workout.find({ user: req.user._id }, (err, workouts) => {
+    res.render("workout-history.hbs", { workouts });
+  });
+});
 router.get("/select", (req, res) => {
   console.log("select workout");
   Template.find({ user: req.user._id }, (err, templates) => {

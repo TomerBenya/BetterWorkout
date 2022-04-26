@@ -1,8 +1,11 @@
 module.exports = {
-  add: function (a, b) {
+  formatDate(date) {
+    return date.toDateString();
+  },
+  add(a, b) {
     return a + b;
   },
-  for: function (context, options) {
+  for(context, options) {
     let accum = "";
     for (let i = 0; i < context; ++i)
       accum += options.fn({

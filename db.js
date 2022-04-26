@@ -29,13 +29,6 @@ const Exercise = new mongoose.Schema(
     _id: true,
   }
 );
-const Template = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  name: { type: String, required: true },
-  createdAt: { type: Date, required: true },
-  exerciseTemplates: [ExerciseTemplate],
-});
-Template.index({ user: 1, name: 1 }, { unique: true });
 
 const Workout = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -44,10 +37,18 @@ const Workout = new mongoose.Schema({
   completedAt: { type: Date, required: true },
   exercises: [Exercise],
 });
+Workout.plugin(URLSlugs("name"));
+
 const User = new mongoose.Schema({});
 User.plugin(passportLocalMongoose);
 
-Workout.plugin(URLSlugs("name"));
+const Template = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  name: { type: String, required: true },
+  createdAt: { type: Date, required: true },
+  exerciseTemplates: [ExerciseTemplate],
+});
+Template.index({ user: 1, name: 1 }, { unique: true });
 
 module.exports = {
   db: mongoose.connect(process.env.DB_CONN),
