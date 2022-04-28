@@ -125,6 +125,8 @@ Here's the [Site Map](https://embed.creately.com/pc3pb9fYLMP?token=V9uj7kCB8HFmO
 
 ## Annotations / References Used
 
-(**TODO**: list any tutorials/references/etc. that you've based your code off of\_)
-
 1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
+
+2. [mocha testing docs](https://mochajs.org/) - (add link to source code that was based on this)
+
+3. [chai assertion docs](https://www.chaijs.com/) - (add link to source code that was based on this)
