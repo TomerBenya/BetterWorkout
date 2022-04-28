@@ -1,7 +1,3 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "**TODO**" with details specific to your project. Remove the "TODO" lines.
-
-(**TODO**: your project name\_)
-
 # Better Workout
 
 ## Overview
@@ -12,8 +8,6 @@ Better workout allows you to create workout routines and automatically increment
 
 ## Data Model
 
-(**TODO**: a description of your application's data and their relationships to each other\_)
-
 The application will store Users, Templates, Workouts, Exercises, and sets
 
 - users can have multiple Workouts and Templates (via references)
@@ -23,8 +17,6 @@ The application will store Users, Templates, Workouts, Exercises, and sets
 - each set has a number of reps and a checked boolean field
 - each Template contains multiple exercises
 - each exercise in a template contains sets, reps, and increment(holds the amount of weight increase between workouts)
-
-(**TODO**: sample documents\_)
 
 An Example User:
 
@@ -59,16 +51,16 @@ An Example Workout with Embedded Exercises and sets based on the above template(
   templateName: "Legs",
   exercises: [
     { name: "Squat", Sets: [
-      {reps: "10", weight:"200", checked: true},
-      {reps: "10", weight:"200", checked: true},
-      {reps: "10",weight:"200", checked: false}
+      {reps: "10", weight:"200"},
+      {reps: "10", weight:"200"},
+      {reps: "10",weight:"200"}
     ]},
     { name: "Deadlift", Sets: [
-      {reps: "5", weight:"300", checked: false},
-      {reps: "5", weight:"300", checked: false},
+      {reps: "5", weight:"300"},
+      {reps: "5", weight:"300"},
     ]},
   ],
-  completed: false //will be true if workout is finished
+
   CompletedAt: // timestamp
 }
 ```
@@ -77,27 +69,25 @@ An Example Workout with Embedded Exercises and sets based on the above template(
 
 ## Wireframes
 
-(**TODO**: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.\_)
-
 /home - page for creating a new shopping list
 
-![Home](wireframes/home.png)
+![Home](docs/wireframes/home.png)
 
 /templates - page for showing all templates
 
-![list](wireframes/Templates.png)
+![list](docs/wireframes/Templates.png)
 
 /templatecreator - page for creating a new template
 
-![Template Creator](wireframes/TemplateCreator.png)
+![Template Creator](docs/wireframes/TemplateCreator.png)
 
 /templateSelector - page for starting a workout from a template
 
-![list](wireframes/templateSelector.png)
+![list](docs/wireframes/templateSelector.png)
 
 /workout - page for tracking workout
 
-![list](wireframes/Workout.png)
+![list](docs/wireframes/Workout.png)
 
 ## Site map
 
@@ -125,8 +115,8 @@ Here's the [Site Map](https://embed.creately.com/pc3pb9fYLMP?token=V9uj7kCB8HFmO
 
 ## Annotations / References Used
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
+1. [passport.js authentication docs](http://passportjs.org/docs) - [sourcecode](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-TomerBenya/blame/master/auth.js#L1-L9)
 
-2. [mocha testing docs](https://mochajs.org/) - (add link to source code that was based on this)
+2. [mocha testing docs](https://mochajs.org/) - [sourcecode](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-TomerBenya/blob/master/test/template.test.js)
 
-3. [chai assertion docs](https://www.chaijs.com/) - (add link to source code that was based on this)
+3. [chai assertion docs](https://www.chaijs.com/) - [sourcecode](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-TomerBenya/blob/master/test/template.test.js)
