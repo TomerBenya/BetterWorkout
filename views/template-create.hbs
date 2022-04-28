@@ -47,7 +47,7 @@
         exercises
       })
     }).then((response) => {
-      if(response.status !== 200) window.alert("Can't save templates with duplicate names, please rename your template.");
+      if(response.status !== 200) window.alert("Can't save template, please make sure that the template name is unique, and that sets, reps and increment are positive numbers");
       else window.location.replace('/template');
     });
   };
