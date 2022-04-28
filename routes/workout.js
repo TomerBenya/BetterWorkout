@@ -7,6 +7,8 @@ const express = require("express"),
   Exercise = mongoose.model("Exercise"),
   Set = mongoose.model("Set");
 
+const ObjectId = mongoose.Types.ObjectId;
+
 const isAuthenticated = (req, res, next) => {
   if (!req.user) {
     res.redirect("/");
@@ -17,28 +19,48 @@ const isAuthenticated = (req, res, next) => {
 };
 router.use(isAuthenticated);
 
-router.get("/history", (req, res) => {
+router.get("/history", async (req, res) => {
   console.log("View Logged Workouts");
-  Workout.find({ user: req.user._id }, (err, workouts) => {
-    res.render("workout-history.hbs", { workouts });
-  });
+  const workouts = await Workout.find({ user: req.user._id })
+    .sort({ completedAt: -1 })
+    .exec();
+  res.render("workout-history.hbs", { workouts });
 });
 router.get("/select", (req, res) => {
   console.log("select workout");
   Template.find({ user: req.user._id }, (err, templates) => {
-    // console.log(templates);
     res.render("workout-select.hbs", { templates });
   });
 });
 
-router.get("/:templateId", (req, res) => {
+router.get("/:templateId", async (req, res) => {
   const { templateId } = req.params;
-
   console.log("start workout");
-  Template.find({ user: req.user._id, _id: templateId }, (err, template) => {
-    // console.log(templates);
-    res.render("workout.hbs", { template });
+
+  if (!ObjectId.isValid(templateId)) return res.status(400).end();
+
+  const template = (
+    await Template.findOne({
+      user: req.user._id,
+      _id: templateId,
+    }).exec()
+  ).toObject();
+
+  const last = await Workout.findOne({
+    user: req.user._id,
+    template: templateId,
+  })
+    .sort({ completedAt: -1 })
+    .exec();
+
+  template.exerciseTemplates.forEach((exerciseTemplate, index) => {
+    exerciseTemplate.weight = last
+      ? last.exercises[index].sets[0].weight + exerciseTemplate.increment
+      : 0;
   });
+
+  console.log(template);
+  res.render("workout.hbs", template);
 });
 
 router.post("/:templateId", async (req, res) => {

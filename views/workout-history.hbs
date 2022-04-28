@@ -5,10 +5,13 @@
   {{#each workouts}}
 
     <h3>
+      
       <span>
+        <u>
         {{name}}
         -
         {{formatDate completedAt}}
+        </u>
       </span>
     </h3>
 
@@ -16,15 +19,18 @@
       <h4>{{add 1 @index}}
         -
         {{name}}</h4>
-
-      {{#each sets}}
-        <p>
+      <ul>
+{{#each sets}}
+        <li>
           {{reps}}
           X
-          {{weight}}
-        </p>
+          {{weight}} lbs
+        </li>
 
       {{/each}}
+
+      </ul>
+      
 
     {{/each}}
   {{/each}}

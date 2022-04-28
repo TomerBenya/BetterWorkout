@@ -2,7 +2,6 @@
 
 
 <div>
-  {{#each template}}
     <h3>
       <span>
         {{name}}
@@ -15,13 +14,13 @@
           {{#for sets}}
             <div class="set">
               <span>
-                <label for="fname">🏋️‍♂️ Reps 🏋️‍♀️</label>
-                <input type="number" size="3" />
+                <label>🏋️‍♂️ Reps 🏋️‍♀️</label>
+                <input type="number" size="3" value={{../reps}} />
               </span>
               
               <span>
-                <label for="fname">🔩 Weight 🔩</label>
-                <input type="number" size="4"/>
+                <label>🔩 Weight 🔩</label>
+                <input type="number" size="4" value={{../weight}} />
               </span>
             </div>
             <hr />
@@ -30,10 +29,7 @@
         </div>
       {{/each}}
     </div>
-
-    <button id="finish">Finish Workout</button>
-
-  {{/each}}
+  <button id="finish">Finish Workout</button>
 </div>
 
 <script>
@@ -46,10 +42,10 @@
 /** @param {HTMLElement} element */
   function parseActivity(element) {
     // TODO: parse the <div class="activity"> data
-    return [...element.querySelectorAll('.set')].map(pareseSet);
+    return [...element.querySelectorAll('.set')].map(parseSet);
   }
 /** @param {HTMLElement} element */  
-  function pareseSet(element) {
+  function parseSet(element) {
     // TODO: parse the <div class="set"> data
     const [reps, weight] = [...element.querySelectorAll('input')].map(e => e.value);
     return { reps, weight }
@@ -64,7 +60,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(parseExercise(exercise)),
     }).then((response) => {
-      window.location.replace('/template');
+      window.location.replace('/workout/history');
     });
 
   })

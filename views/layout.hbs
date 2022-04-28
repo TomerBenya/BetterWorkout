@@ -1,7 +1,14 @@
 <html>
   <head>
+
     <title></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet'>
+    <style>
+h1 {
+    font-family: 'Rock Salt';font-size: 40px;
+}
+</style>
   </head>
   <body>
     <div id="wrapper">
@@ -13,14 +20,15 @@
           </div>
         {{/if}}
         <h1>💪
-          <a href="/">Better Workout</a>
+          Better Workout
           <span
             style="display: inline-block;transform: scale(-1, 1);"
           >💪</span></h1>
       </div>
       <div id="ft">
         {{#if user}}
-
+          <a href="/">Home</a>
+          |
           <a href="/workout/select">Start Workout</a>
           |
           <a href="/template/create">Create Template</a>
