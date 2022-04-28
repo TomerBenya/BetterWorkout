@@ -45,3 +45,4 @@ app.use("/", indexRouter);
 app.use("/template", templateRouter);
 app.use("/workout", workoutRouter);
 app.listen(8080);
+module.exports = app;
